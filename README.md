@@ -1,2 +1,2 @@
 # HRAnalytics
-CLassify whether a candidate will attend interview
+Classify whether a candidate will attend interview
