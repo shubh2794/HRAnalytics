@@ -1,0 +1,48 @@
+
+
+files:
+preprocessing.py - All preprocessing done.
+Modelling.py - Build RandomForest model
+forecasting.py - Forcasted the UnitPrice
+Proprocessed data:
+train.csv - Training data
+test.csv - Testing data
+
+
+Summary of steps performed:
+Preprocessing:
+1. Imported required libraries.
+2. Explored the data like shape,data types,column names.
+3. Performed Univariate analysis-
+	3.1 For numeric variables checked skewness,variance,histogram,correaltion
+	3.2 InvoiceDate started at 2010-12-01 and ended at 2011-12-09.
+	3.3 For categorical data plotted bar plot and found who are top. 
+4. Checked Missing values percentage and dropped the rows.
+5. Performed Bivariate analysis-
+	5.1 Ploted the data for one variable with respective to another.
+	5.2 Checked multi-collinearity
+6. Feature Engineering
+	6.1 Created new variable from invoice number starts with C.
+	6.2 Added new date fields
+	6.3 Identified highly influence Customers who contributed 50 percentile from all the Customers.
+7. Splited the data into training and testing on InvoiceDate
+	7.1 Considered 2010-12 to 2011-08 for Training.
+	7.2  Considered 2011-09 to 2011-12 for Testing.
+8. Saved the Train and Test datasets.
+
+ML model:
+1. Loaded the train and test data 
+2. Build Random Forest Regressor with RMSE - 52.73672973747685.
+3. Tried Random Search to get optimal parameters.
+
+Forecasting:
+1. Considered only UnitPrice , InvoiceDate columns and aggregated with day-wise.
+2. Replaced with 0 where the few dates have no UnitPrice.
+3. Ploting the data
+4. Checked the time series by ExponentialSmoothing model and rmse is 2.3242101442477607
+5. Expored the Time series with 3 terms - Seasonality,Trend,noise
+6. Got the optimal p,d,q values. ARIMA(0, 1, 1)x(0, 1, 1, 12)12 - AIC:1455.0565804796659
+7. Build SARIMA - seasonal ARIMA model with rmse value 1.827147370401409
+8. Tried with different p,d,q values like trail and error
+9. Also got the optimal p,q values from ACF,PACF plots.
+10. Build Auto amria.
